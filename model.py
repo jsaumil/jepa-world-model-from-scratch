@@ -16,8 +16,21 @@ def init_env_state(room_size: int = 8, seed: int | None = None) -> torch.Tensor:
 
     return state
 
-# Step 2 - apply_action (not yet solved)
-# TODO: implement
+# Step 2 - apply_action
+def apply_action(state: torch.Tensor, action: int, room_size: int = 8) -> torch.Tensor:
+    new_state = state.clone()
+    if action == 0:
+        new_state[1] -= 1
+    if action == 1:
+        new_state[1] += 1
+    if action == 2:
+        new_state[0] -= 1
+    if action == 3:
+        new_state[0] += 1
+
+    new_state = torch.clamp(new_state,0,room_size-1)
+
+    return new_state
 
 # Step 3 - render_observation (not yet solved)
 # TODO: implement
