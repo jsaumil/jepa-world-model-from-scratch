@@ -32,8 +32,14 @@ def apply_action(state: torch.Tensor, action: int, room_size: int = 8) -> torch.
 
     return new_state
 
-# Step 3 - render_observation (not yet solved)
-# TODO: implement
+# Step 3 - render_observation
+import torch
+def render_observation(state: torch.Tensor, room_size: int = 8) -> torch.Tensor:
+    out = torch.zeros(1,room_size,room_size)
+    x=int(state[0].item())
+    y=int(state[1].item())
+    out[0,y,x] = 1.0
+    return out.float()
 
 # Step 4 - env_reset (not yet solved)
 # TODO: implement
